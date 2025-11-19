@@ -1,0 +1,77 @@
+🎯 BẢN RÚT GỌN CHUẨN NỘP HỌC KỲ
+1) Frontend (Next.js) – 8 trang là đủ
+1. Trang chủ
+
+/
+– Giới thiệu dịch vụ
+– Nút đặt lịch
+– Nút định giá xe
+– Nút xem xe bán
+
+2. Danh sách dịch vụ
+
+/services
+– 3–5 dịch vụ cơ bản (rửa xe, đánh bóng, kiểm tra tổng quát…)
+– Nút “Đặt lịch”
+
+3. Đặt lịch
+
+/booking
+– Form:
+
+Chọn dịch vụ
+
+Chọn ngày giờ
+
+Nhập biển số / thông tin xe
+
+Upload 1 ảnh
+– Gửi về Laravel
+
+4. Định giá xe
+
+/valuation
+– Form:
+
+Năm SX
+
+Dòng xe
+
+Số km
+
+Ảnh xe
+– Gửi backend → trả về giá dự kiến
+
+5. Kết quả định giá
+
+/valuation/result
+– Hiện giá dự kiến
+– Gợi ý “Đăng bán xe ngay”
+
+6. Danh sách xe bán
+
+/cars
+– Hiển thị list xe (ảnh + giá)
+
+7. Chi tiết xe
+
+/cars/[id]
+– Giá
+– Hình
+– Mô tả
+– Liên hệ
+
+8. Đăng bán xe
+
+/cars/sell
+– Form:
+
+Tên xe
+
+Năm SX
+
+Km
+
+Giá mong muốn
+
+Upload tối đa 3 ảnh
