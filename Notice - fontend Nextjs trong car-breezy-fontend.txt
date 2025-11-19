@@ -1,0 +1,4 @@
+fontend ở trong car-breezy-fontend.
+cd car-breezy-fontend để làm việc.
+commit git ở file cha.
+Làm dự án bằng tiếng anh nhé. nhưng comment code bằng tiếng việt hoặc song ngữ tuy bạn cho dễ hiểu.
