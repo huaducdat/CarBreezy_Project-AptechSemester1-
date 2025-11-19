@@ -1,0 +1,2 @@
+đặt tên nhanh là git checkout -b fontend/ten-cua-ban nhé mọi người. 
+Và không merge trực tiếp vào dev hoặc main. tránh xung đột.
