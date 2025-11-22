@@ -1,0 +1,23 @@
+@startuml
+title Car Breezy - Deployment Diagram
+
+node "User Device" {
+    component "Browser (Next.js Frontend)"
+}
+
+node "Backend Server" {
+    component "Laravel API"
+    component "Admin Panel"
+    component "Root Panel"
+}
+
+node "Database Server" {
+    database "MySQL Database"
+}
+
+"Browser (Next.js Frontend)" --> "Laravel API" : HTTPS
+Admin --> "Admin Panel" : Admin Login
+Root --> "Root Panel" : Root Login
+"Laravel API" --> "MySQL Database" : SQL
+
+@enduml

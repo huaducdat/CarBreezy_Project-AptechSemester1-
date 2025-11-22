@@ -1,0 +1,38 @@
+@startuml
+title Car Breezy - Activity Diagram (User Flow)
+
+start
+
+:User visits website;
+
+if (Has account?) then (Yes)
+    :Login;
+else (No)
+    :Register;
+endif
+
+:Choose Action;
+
+if (Booking?) then (Yes)
+    :Fill Booking Form;
+    :Upload optional image;
+    :POST /bookings;
+    :Booking created (pending);
+endif
+
+if (Valuation?) then (Yes)
+    :Fill Valuation Form;
+    :Upload image;
+    :POST /valuations;
+    :Valuation created (pending);
+endif
+
+if (Sell Car?) then (Yes)
+    :Fill Car Listing Form;
+    :Upload multiple images;
+    :POST /cars;
+    :Car listing created (pending);
+endif
+
+stop
+@enduml

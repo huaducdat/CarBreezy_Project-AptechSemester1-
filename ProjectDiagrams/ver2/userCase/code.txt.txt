@@ -1,0 +1,40 @@
+@startuml
+title Car Breezy - Use Case Diagram
+
+actor User
+actor Admin
+actor Root
+
+rectangle "Car Breezy System" {
+
+    (Register) as UC1
+    (Login) as UC2
+    (Submit Booking) as UC3
+    (Request Valuation) as UC4
+    (Submit Car Listing) as UC5
+
+    (Approve Booking) as UCA1
+    (Approve Valuation) as UCA2
+    (Approve Car Listing) as UCA3
+
+    (Manage Admin Accounts) as UCR1
+    (System Controls) as UCR2
+}
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+
+Admin --> UCA1
+Admin --> UCA2
+Admin --> UCA3
+
+Root --> UCR1
+Root --> UCR2
+Root --> UCA1
+Root --> UCA2
+Root --> UCA3
+
+@enduml

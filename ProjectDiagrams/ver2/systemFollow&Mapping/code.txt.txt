@@ -1,0 +1,88 @@
+@startuml
+title Car Breezy - System Flow & Feature Mapping Diagram
+
+skinparam rectangle {
+  BackgroundColor White
+  BorderColor Black
+  RoundCorner 10
+}
+skinparam shadowing false
+
+actor User
+actor Admin
+actor Root
+
+' =======================
+' FRONTEND BLOCK
+' =======================
+rectangle "FRONTEND (Next.js)" as FE {
+
+  rectangle "Auth Pages\n\n/register\n/login" as FE_AUTH
+
+  rectangle "Sell Car Page\n\nFields:\n- title\n- year\n- mileage\n- price\n- description\n- images[]" as FE_SELL
+
+  rectangle "Booking Page\n\nFields:\n- service_id\n- date\n- time\n- car_info\n- image" as FE_BOOK
+
+  rectangle "Valuation Page\n\nFields:\n- car_model\n- year\n- mileage\n- image" as FE_VAL
+}
+
+' =======================
+' BACKEND BLOCK
+' =======================
+rectangle "BACKEND (Laravel API)" as BE {
+
+  rectangle "Auth Controller\n\nInput:\n- name, email, pass\nProcess:\n- Validate\n- Hash password\n- Create user\n\nOutput:\n token + user" as BE_AUTH
+
+  rectangle "Car Controller\n\nInput:\n- car info\nProcess:\n- Create car (pending)\n- Upload images\n\nOutput:\n car_id / images" as BE_CAR
+
+  rectangle "Booking Controller\n\nInput:\n- service, date, time, info\nProcess:\n- Validate\n- Create booking (pending)" as BE_BOOK
+
+  rectangle "Valuation Controller\n\nInput:\n- car_model, year, mileage, image\nProcess:\n- Validate\n- Create valuation (pending)" as BE_VALCTRL
+
+  rectangle "Admin Controller\n\nAdmin approves/rejects\n- bookings\n- valuations\n- car listings" as BE_ADMIN
+
+  rectangle "Root Controller\n\nRoot only features:\n- Manage admins\n- System overrides" as BE_ROOT
+}
+
+' =======================
+' DATABASE BLOCK
+' =======================
+database "DATABASE (MySQL)" as DB {
+  rectangle "users"
+  rectangle "bookings"
+  rectangle "valuations"
+  rectangle "cars"
+  rectangle "car_images"
+}
+
+' =======================
+' USER FLOWS
+' =======================
+
+User --> FE_AUTH : Register / Login
+User --> FE_BOOK : Booking
+User --> FE_VAL : Valuation
+User --> FE_SELL : Sell Car
+
+FE_AUTH --> BE_AUTH : POST /register\nPOST /login
+
+FE_BOOK --> BE_BOOK : POST /bookings
+FE_VAL --> BE_VALCTRL : POST /valuations
+FE_SELL --> BE_CAR : POST /cars\nPOST /cars/{id}/images
+
+BE_AUTH --> DB
+BE_BOOK --> DB
+BE_VALCTRL --> DB
+BE_CAR --> DB
+
+' =======================
+' ADMIN & ROOT DIRECT ACCESS
+' =======================
+
+Admin --> BE_ADMIN : Direct Admin Panel Access
+Root --> BE_ROOT : Direct Root Panel Access
+
+BE_ADMIN --> DB
+BE_ROOT --> DB
+
+@enduml

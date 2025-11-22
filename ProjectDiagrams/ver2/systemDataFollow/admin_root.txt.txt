@@ -1,0 +1,59 @@
+@startuml
+title Car Breezy - FULL SYSTEM DATA FLOW (ADMIN + ROOT FLOW)
+
+actor Admin
+actor Root
+
+participant BE as "Backend Admin Panel"
+participant API as "Laravel Admin API"
+database DB as "MySQL"
+
+== ROOT LOGIN ==
+Root -> BE: Access Root Panel Login
+BE -> API: POST /login
+API -> DB: SELECT * FROM users WHERE role='root'
+API --> BE: Root Authenticated
+
+== ROOT CREATES ADMIN ==
+Root -> BE: Create Admin Form
+BE -> API: POST /root/create-admin
+API -> DB: INSERT INTO users(role='admin')
+API --> BE: Admin Created
+
+== ADMIN LOGIN ==
+Admin -> BE: Login to Admin Panel
+BE -> API: POST /login
+API -> DB: SELECT * FROM users WHERE role='admin'
+API --> BE: Admin Authenticated
+
+== ADMIN REVIEWS BOOKING ==
+Admin -> BE: Open Pending Bookings
+BE -> API: GET /admin/bookings
+API -> DB: SELECT * FROM bookings WHERE status='pending'
+API --> BE: List Pending Bookings
+
+Admin -> BE: Approve/Reject Booking
+BE -> API: PUT /admin/bookings/{id}/status
+API -> DB: UPDATE bookings SET status=approved/rejected
+
+== ADMIN REVIEWS VALUATION ==
+Admin -> BE: Open Pending Valuations
+BE -> API: GET /admin/valuations
+API -> DB: SELECT * FROM valuations WHERE status='pending'
+API --> BE: List
+
+Admin -> BE: Approve/Reject Valuation
+BE -> API: PUT /admin/valuations/{id}/status
+API -> DB: UPDATE valuations SET status=approved/rejected
+
+== ADMIN REVIEWS CAR LISTING ==
+Admin -> BE: Open Pending Car Listings
+BE -> API: GET /admin/cars
+API -> DB: SELECT * FROM cars WHERE status='pending'
+API --> BE: List
+
+Admin -> BE: Approve/Reject Car Listing
+BE -> API: PUT /admin/cars/{id}/status
+API -> DB: UPDATE cars SET status=approved/rejected
+
+@enduml

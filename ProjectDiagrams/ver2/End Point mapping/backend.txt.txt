@@ -1,0 +1,28 @@
+@startuml
+title Car Breezy - API Endpoint Mapping (ADMIN + ROOT)
+
+package "ADMIN BOOKING" {
+    () "GET /admin/bookings"
+    () "PUT /admin/bookings/{id}/approve"
+    () "PUT /admin/bookings/{id}/reject"
+}
+
+package "ADMIN VALUATION" {
+    () "GET /admin/valuations"
+    () "PUT /admin/valuations/{id}/approve"
+    () "PUT /admin/valuations/{id}/reject"
+}
+
+package "ADMIN CAR LISTING" {
+    () "GET /admin/cars"
+    () "PUT /admin/cars/{id}/approve"
+    () "PUT /admin/cars/{id}/reject"
+}
+
+package "ROOT MANAGEMENT" {
+    () "GET /root/admins"
+    () "POST /root/create-admin"
+    () "DELETE /root/admins/{id}"
+}
+
+@enduml

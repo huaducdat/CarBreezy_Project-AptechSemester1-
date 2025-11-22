@@ -1,0 +1,48 @@
+@startuml
+title Car Breezy - Activity Diagram (Admin & Root Back-End Flow)
+
+start
+
+:Access Backend Admin Panel;
+
+:Authenticate (role = admin/root);
+
+:Open Dashboard;
+
+repeat
+    :View Pending Items;
+    
+    if (Pending Bookings?) then (Yes)
+        :Open Booking List;
+        :Review Booking Details;
+        if (Approve?) then (Yes)
+            :Update Status = "approved";
+        else (Reject)
+            :Update Status = "rejected";
+        endif
+    endif
+    
+    if (Pending Valuations?) then (Yes)
+        :Open Valuation List;
+        :Review Valuation Details;
+        if (Approve?) then (Yes)
+            :Update Status = "approved";
+        else (Reject)
+            :Update Status = "rejected";
+        endif
+    endif
+    
+    if (Pending Car Listings?) then (Yes)
+        :Open Car List;
+        :Preview Images;
+        :Review Car Details;
+        if (Approve?) then (Yes)
+            :Update Status = "approved";
+        else (Reject)
+            :Update Status = "rejected";
+        endif
+    endif
+repeat while (More pending items?)
+
+stop
+@enduml

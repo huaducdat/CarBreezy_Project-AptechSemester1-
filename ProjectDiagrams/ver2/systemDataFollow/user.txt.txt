@@ -1,0 +1,41 @@
+@startuml
+title Car Breezy - FULL SYSTEM DATA FLOW (USER FLOW)
+
+actor User
+participant FE as "Next.js Frontend"
+participant API as "Laravel API"
+database DB as "MySQL"
+
+== USER REGISTER ==
+User -> FE: Fill Register Form
+FE -> API: POST /register
+API -> DB: INSERT INTO users(role='user')
+API --> FE: User Created + Token
+
+== USER LOGIN ==
+User -> FE: Fill Login Form
+FE -> API: POST /login
+API -> DB: SELECT * FROM users
+API --> FE: Token + User Info
+
+== BOOKING ==
+User -> FE: Booking Form
+FE -> API: POST /bookings
+API -> DB: INSERT booking(status='pending')
+API --> FE: booking_id
+
+== VALUATION ==
+User -> FE: Valuation Form
+FE -> API: POST /valuations
+API -> DB: INSERT valuation(status='pending')
+API --> FE: valuation_id
+
+== SELL CAR ==
+User -> FE: Car Form + Images
+FE -> API: POST /cars
+API -> DB: INSERT cars(status='pending')
+
+FE -> API: POST /cars/{id}/images
+API -> DB: INSERT INTO car_images
+
+@enduml

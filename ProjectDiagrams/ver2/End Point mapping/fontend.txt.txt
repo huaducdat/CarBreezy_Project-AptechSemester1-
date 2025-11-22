@@ -1,0 +1,24 @@
+@startuml
+title Car Breezy - API Endpoint Mapping (USER)
+
+package "AUTH" {
+    () "POST /register"
+    () "POST /login"
+}
+
+package "BOOKINGS" {
+    () "POST /bookings"
+    () "GET /bookings/{id}"
+}
+
+package "VALUATIONS" {
+    () "POST /valuations"
+    () "GET /valuations/{id}"
+}
+
+package "CAR LISTING" {
+    () "POST /cars"
+    () "POST /cars/{id}/images"
+}
+
+@enduml

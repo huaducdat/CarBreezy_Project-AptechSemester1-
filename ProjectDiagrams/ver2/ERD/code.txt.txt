@@ -1,0 +1,57 @@
+@startuml
+title Car Breezy - ERD
+
+entity Users {
+  *id : int
+  name : string
+  email : string
+  password : string
+  phone : string
+  role : enum(user, admin, root)
+}
+
+entity Bookings {
+  *id : int
+  user_id : int
+  service_id : int
+  date : date
+  time : time
+  car_info : text
+  image_url : string
+  status : string
+}
+
+entity Valuations {
+  *id : int
+  user_id : int
+  car_model : string
+  year : int
+  mileage : int
+  image_url : string
+  estimated_price : decimal
+  status : string
+}
+
+entity Cars {
+  *id : int
+  user_id : int
+  title : string
+  year : int
+  mileage : int
+  price : decimal
+  description : text
+  status : string
+}
+
+entity CarImages {
+  *id : int
+  car_id : int
+  image_url : string
+}
+
+Users ||--o{ Bookings
+Users ||--o{ Valuations
+Users ||--o{ Cars
+Cars ||--o{ CarImages
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+title Car Breezy - State Machine (Pending → Approved → Rejected)
+
+[*] --> pending : Created by user
+
+pending --> approved : Admin approves
+pending --> rejected : Admin rejects
+pending --> cancelled : User cancels
+
+approved --> completed : Transaction done
+
+completed --> [*]
+rejected --> [*]
+cancelled --> [*]
+
+@enduml
