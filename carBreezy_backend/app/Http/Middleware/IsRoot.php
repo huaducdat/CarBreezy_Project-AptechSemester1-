@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class IsAdmin
+class IsRoot
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check() || !in_array(auth()->user()->role, ['admin', 'root'])) {
-            return response()->json(['message' => 'Forbiden'], 403);
+        if(!auth()->check() || auth()->user()->role !== 'root'){
+            return response()->json(['message' => 'Forbidden'], 430);
         }
         return $next($request);
     }
